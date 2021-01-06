@@ -1,0 +1,11 @@
+
+.content {
+    grid-area: c;
+    background-color: darkslateblue;
+}
+
+.item img {
+    margin: 10px 0 0 10px;
+    width: 50px;
+    border-radius: 30%;
+}
