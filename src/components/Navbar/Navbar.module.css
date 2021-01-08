@@ -2,7 +2,15 @@
 .nav {
     grid-area: n;
     background-color: tomato;
+    border-radius: 20px;
 }
 .item{
+    margin: 5% 0 0 10%;
+}
+.item a{
     color: white;
+    text-decoration: none;
+}
+.item a.activeLink{
+    color: black;
 }

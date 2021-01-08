@@ -1,11 +1,8 @@
 
-.content {
-    grid-area: c;
-    background-color: darkslateblue;
-}
-
 .item.img {
     margin: 0;
+
+
 }
 
 .item {
