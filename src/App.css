@@ -1,6 +1,6 @@
 .app-wrapper {
     margin: 0 auto;
-    width: 90vw;
+    width: 70vw;
     height: 100vh;
     display: grid;
     grid-template-rows: 60px;
@@ -12,12 +12,11 @@
     'n c';
 }
 
-#root {
+html {
     background-color: wheat;
 }
 
 .app-wrapper-content {
-
     grid-area: c;
     background-color: darkslateblue;
 }
