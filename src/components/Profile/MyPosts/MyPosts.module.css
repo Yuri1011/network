@@ -2,3 +2,6 @@
 .postsBlock{
     padding: 2%;
 }
+.postsBlock h4{
+    color: silver;
+}
