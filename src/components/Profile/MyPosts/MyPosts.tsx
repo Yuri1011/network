@@ -2,13 +2,22 @@ import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
-export const MyPosts = () => {
+type PostsType = {
+    message: string
+    like: number
+}
+type PropsMyPosts = {
+    posts: Array<PostsType>
+}
 
-    let posts = [
-        {message: 'Hello bro!', like: 10},
-        {message: 'Please like my avatar!!', like: 25}
-    ]
-    let postsUsers = posts.map(postUser => <Post message={postUser.message} like={postUser.like}/>);
+export const MyPosts = (props: PropsMyPosts) => {
+
+    let postsUsers = props.posts.map(postUser => <Post message={postUser.message} like={postUser.like}/>);
+    let newPostElement : any = React.createRef();
+    let addPost = () => {
+        let  text = newPostElement.current.value;
+        alert(text);
+    }
 
     return (
         <div className={s.postsBlock}>
@@ -16,10 +25,10 @@ export const MyPosts = () => {
                 <h4>My posts</h4>
             </div>
             <div>
-                <textarea/>
+                <textarea ref={newPostElement}/>
             </div>
             <div>
-                <button>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {postsUsers}

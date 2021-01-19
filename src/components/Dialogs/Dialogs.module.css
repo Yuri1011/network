@@ -30,4 +30,21 @@
     padding: 1%;
 }
 
+.sendMessage {
+    position: relative;
+    width: 50px;
+    left: 15px;
+}
+
+.sendMessage textarea {
+    width: 250px;
+
+}
+
+.sendMessage button {
+    position: absolute;
+    bottom: 4px;
+    left: 260px;
+    color: blue;
+}
 

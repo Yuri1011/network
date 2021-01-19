@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Post.module.css'
 
-
 type PropsPostType = {
     message: string
     like: number
