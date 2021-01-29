@@ -22,10 +22,15 @@ export const Dialogs = (props: PropsDialogsType) => {
 
     let dialogsUsers = props.data.dialogs.map(users => <DialogItem name={users.name} id={users.id}/>);
     let messageElements = props.data.messages.map(messages => <Message message={messages.message}/>);
-    let sendNewMessage: any = React.createRef()
+    let sendNewMessage = React.createRef<HTMLTextAreaElement>()
     let sendMessage = () => {
-        let text = sendNewMessage.current.value
-        alert(text);
+        if (sendNewMessage.current) {
+            let text = sendNewMessage.current.value
+            alert(text);
+        }
+        if (sendNewMessage.current) {
+            sendNewMessage.current.value = '';
+        }
     }
     return (
         <div>
