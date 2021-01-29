@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
@@ -10,11 +10,13 @@ import {Music} from './components/Music/Music';
 import {Settings} from "./components/Settings/Settings";
 
 type PostsType = {
+    id: number
     message: string
     like: number
 }
 type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 type DialogsType = {
     name: string
@@ -27,23 +29,28 @@ type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 }
-type StateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 type PropsAppType = {
     state: StateType
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 const App = (props: PropsAppType) => {
-
     return (
-
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
             <div className={'app-wrapper-content'}>
-                <Route path={'/profile'} render={() => <Profile posts={props.state.profilePage.posts}/>}/>
+                <Route path={'/profile'}
+                       render={() => <Profile profilePage={props.state.profilePage}
+                                              addPost={props.addPost}
+                                              newPostText={props.state.profilePage.newPostText}
+                                              updateNewPostText={props.updateNewPostText}
+                       />}/>
                 <Route path={'/dialogs'} render={() => <Dialogs data={props.state.dialogsPage}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>

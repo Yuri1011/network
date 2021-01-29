@@ -1,11 +1,14 @@
 import React from "react";
+import {renderEntireTree} from "../render";
 
 type PostsType = {
+    id: number
     message: string
     like: number
 }
 type ProfilePageType = {
-    posts: PostsType[]
+    posts: Array<PostsType>
+    newPostText: string
 }
 type DialogsType = {
     name: string
@@ -26,9 +29,9 @@ type StateType = {
 let state: StateType = {
     profilePage: {
         posts: [
-            {message: 'Hello bro!', like: 10},
-            {message: 'Please like my avatar!!', like: 25}
-        ]
+            {id: 1, message: 'Hello bro!', like: 10},
+        ],
+        newPostText: '',
     },
     dialogsPage: {
         dialogs: [
@@ -44,6 +47,17 @@ let state: StateType = {
             {message: 'i`am Lox))'}
         ]
     }
+}
+
+export const addPost = () => {
+    const newPost = {id: 2, message: state.profilePage.newPostText, like: 0}
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    renderEntireTree(state);
+}
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    renderEntireTree(state);
 }
 
 export default state;
