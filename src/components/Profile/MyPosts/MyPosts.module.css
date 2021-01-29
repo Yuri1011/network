@@ -1,7 +1,12 @@
 
-.postsBlock{
+.postsBlock {
     padding: 2%;
 }
-.postsBlock h4{
+
+.postsBlock h4 {
     color: silver;
+}
+
+.posts {
+    width: 100%;
 }
