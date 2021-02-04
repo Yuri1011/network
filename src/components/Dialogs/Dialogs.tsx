@@ -2,36 +2,28 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {sendMessageCreated, StoreType, updateNewMessageBodyCreated} from "../../redux/state";
 
-type DialogType = {
-    name: string
-    id: number
-}
-type MessagesType = {
-    message: string
-}
-type DialogsPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessagesType>
-}
 type PropsDialogsType = {
-    data: DialogsPageType
+    store: StoreType
 }
 
 export const Dialogs = (props: PropsDialogsType) => {
 
-    let dialogsUsers = props.data.dialogs.map(users => <DialogItem name={users.name} id={users.id}/>);
-    let messageElements = props.data.messages.map(messages => <Message message={messages.message}/>);
-    let sendNewMessage = React.createRef<HTMLTextAreaElement>()
-    let sendMessage = () => {
-        if (sendNewMessage.current) {
-            let text = sendNewMessage.current.value
-            alert(text);
-        }
-        if (sendNewMessage.current) {
-            sendNewMessage.current.value = '';
-        }
+    let state = props.store.getState().dialogsPage
+
+    let dialogsUsers = state.dialogs.map(users => <DialogItem name={users.name} id={users.id}/>);
+    let messageElements = state.messages.map(messages => <Message message={messages.message}/>);
+    let newMessageBody = state.newMessageBody;
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreated());
+
     }
+    let onNewMessageChange = (event: any) => {
+        let body = event.target.value;
+        props.store.dispatch(updateNewMessageBodyCreated(body));
+    }
+
     return (
         <div>
             <div className={s.dialogs}>
@@ -39,12 +31,14 @@ export const Dialogs = (props: PropsDialogsType) => {
                     {dialogsUsers}
                 </div>
                 <div className={s.messages}>
-                    {messageElements}
+                    <div>{messageElements}</div>
+                    <div>
+                        <div className={s.sendMessage}>
+                            <textarea value={newMessageBody} onChange={onNewMessageChange} placeholder='Message'/>
+                            <button onClick={onSendMessageClick}>SEND</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={s.sendMessage}>
-                <textarea ref={sendNewMessage}/>
-                <button onClick={sendMessage}>SEND</button>
             </div>
         </div>
     )

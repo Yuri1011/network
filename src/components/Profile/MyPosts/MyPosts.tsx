@@ -1,27 +1,31 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {ActionsType, addPostActionCreated, updateNewPostTextActionCreated} from "../../../redux/state";
+
 
 type PostsType = {
+    id: number
     message: string
     like: number
 }
 type PropsMyPosts = {
     posts: Array<PostsType>
-    addPost: () => void
+    dispatch: (action: ActionsType) => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
 }
+
 
 export const MyPosts = (props: PropsMyPosts) => {
 
     let postsUsers = props.posts.map(postUser => <Post message={postUser.message} like={postUser.like}/>);
     let newPostElement = React.createRef<HTMLTextAreaElement>();
-    let addPost = () => newPostElement.current ? props.addPost() : {};
+
+    let addPost = () => props.dispatch(addPostActionCreated(props.newPostText));
     let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            props.updateNewPostText(text);
+            props.dispatch(updateNewPostTextActionCreated(text));
         }
     }
 
