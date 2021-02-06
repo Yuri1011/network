@@ -1,8 +1,8 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ActionsType, addPostActionCreated, updateNewPostTextActionCreated} from "../../../redux/state";
-
+import {addPostActionCreated, updateNewPostTextActionCreated} from "../../../redux/profilePageReducer";
+import {ActionsType} from "../../../redux/state";
 
 type PostsType = {
     id: number
@@ -14,7 +14,6 @@ type PropsMyPosts = {
     dispatch: (action: ActionsType) => void
     newPostText: string
 }
-
 
 export const MyPosts = (props: PropsMyPosts) => {
 
