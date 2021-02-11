@@ -1,12 +1,13 @@
-import {ActionsType, AddPostActionType, ProfilePageType, UpdateNewPostTextActionType} from "./state";
+import {ActionsType, ProfilePageType} from "./state";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const profilePageReducer = (state: ProfilePageType, action: ActionsType) => {
+export const profilePageReducer = (state: ProfilePageType, action: ActionsType) => {
+
     switch (action.type) {
         case ADD_POST:
-            const newPost = {id: 2, message: action.newPostText, like: 0}
+            const newPost = {id: 2, message: state.newPostText, like: 0}
             state.posts.push(newPost);
             state.newPostText = '';
             break;
@@ -16,14 +17,12 @@ const profilePageReducer = (state: ProfilePageType, action: ActionsType) => {
     }
     return state;
 }
-export const addPostActionCreated = (newPostText: string): AddPostActionType =>
+export const addPostActionCreated = (): ActionsType =>
     ({
-        type: ADD_POST,
-        newPostText: newPostText
+        type: ADD_POST
     })
-export const updateNewPostTextActionCreated = (text: string): UpdateNewPostTextActionType =>
+export const updateNewPostTextActionCreated = (text: string): ActionsType =>
     ({
         type: UPDATE_NEW_POST_TEXT,
         newText: text
     })
-export default profilePageReducer;

@@ -36,8 +36,8 @@ export type StateType = {
 }
 type PropsAppType = {
     state: StateType
-    dispatch: (action:ActionsType) => void
-    store:StoreType
+    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
 const App = (props: PropsAppType) => {
@@ -47,11 +47,10 @@ const App = (props: PropsAppType) => {
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Route path={'/profile'}
-                       render={() => <Profile profilePage={props.state.profilePage}
+                       render={() => <Profile store={props.store}
                                               dispatch={props.dispatch}
-                                              newPostText={props.state.profilePage.newPostText}
                        />}/>
-                <Route path={'/dialogs'} render={() => <Dialogs store={props.store} />}/>
+                <Route path={'/dialogs'} render={() => <Dialogs store={props.store}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>

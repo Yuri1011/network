@@ -18,7 +18,6 @@ export const Dialogs = (props: PropsDialogsType) => {
     let newMessageBody = state.newMessageBody;
     let onSendMessageClick = () => {
         props.store.dispatch(sendMessageCreated());
-
     }
     let onNewMessageChange = (event: any) => {
         let body = event.target.value;

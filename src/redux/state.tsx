@@ -1,6 +1,6 @@
 import React from "react";
-import profilePageReducer from "./profilePageReducer";
-import dialogPageReducer from "./dialogPageReducer";
+import {profilePageReducer} from "./profilePageReducer";
+import {dialogPageReducer} from "./dialogPageReducer";
 
 type Posts = {
     id: number
@@ -31,7 +31,6 @@ export type StateType = {
 }
 export type AddPostActionType = {
     type: 'ADD-POST'
-    newPostText: string
 }
 export type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -53,11 +52,11 @@ export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
     getState: () => StateType
-    subscribe: (observer: () => void) => void
+    subscribe: (observer: any) => void
     dispatch: (action: ActionsType) => void
 }
 
-let store: StoreType = {
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -82,7 +81,6 @@ let store: StoreType = {
         }
     },
     _callSubscriber() {
-        console.log('HELLO');
     },
     getState() {
         return this._state;
@@ -96,5 +94,3 @@ let store: StoreType = {
         this._callSubscriber();
     }
 }
-
-export default store;
